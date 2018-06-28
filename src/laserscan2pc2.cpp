@@ -34,16 +34,18 @@ public:
         msg->header.frame_id,
         "/odom",
         msg->header.stamp + ros::Duration().fromSec(msg->ranges.size()*msg->time_increment),
-        ros::Duration(1.0)))
+        ros::Duration(2.0)))
     {
+     std::cout<<"Error!!!!!!!!!!!!!!!!!!!!!!!!"<<std::endl;
      return;
     }
-    
-    std::cout<<"!!!!!!!!!!!!!!!!!"<<std::endl;
     
     sensor_msgs::PointCloud2 cloud;
     projector_.transformLaserScanToPointCloud("/odom",*msg,
 	    cloud,listener_);
+
+    ros::Time now = ros::Time::now();
+    std::cout<<now.sec<<":"<<now.nsec<<", OK!!!!!!!!!!!!!!!!!"<<std::endl;
     
     pub_.publish(cloud);
   }
