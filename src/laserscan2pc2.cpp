@@ -33,8 +33,8 @@ public:
     if(!listener_.waitForTransform(
         msg->header.frame_id,
         "/odom",
-        msg->header.stamp + ros::Duration().fromSec(msg->ranges.size()*msg->time_increment),
-        ros::Duration(2.0)))
+        msg->header.stamp,    //msg->header.stamp + ros::Duration().fromSec(msg->ranges.size()*msg->time_increment)
+        ros::Duration(1.0)))
     {
      std::cout<<"Error!!!!!!!!!!!!!!!!!!!!!!!!"<<std::endl;
      return;
